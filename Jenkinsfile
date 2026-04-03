@@ -4,19 +4,19 @@ pipeline {
     stages {
         stage('Pull Latest Image') {
             steps {
-                sh 'docker pull hari7890/bluegreen-app:latest'
+                bat 'docker pull hari7890/bluegreen-app:latest'
             }
         }
 
         stage('Deploy Green') {
             steps {
-                sh 'kubectl apply -f k8s/green-deployment.yaml'
+                bat 'kubectl apply -f k8s/green-deployment.yaml'
             }
         }
 
         stage('Switch Traffic') {
             steps {
-                sh 'kubectl patch service my-service -p \'{"spec":{"selector":{"version":"green"}}}\''
+                bat 'kubectl patch service my-service -p \'{"spec":{"selector":{"version":"green"}}}\''
             }
         }
     }
