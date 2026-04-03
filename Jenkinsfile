@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        KUBECONFIG = "C:\\Users\\Acer\\.kube\\config"
+    }
+
     stages {
         stage('Pull Latest Image') {
             steps {
@@ -16,7 +20,7 @@ pipeline {
 
         stage('Switch Traffic') {
             steps {
-                bat 'kubectl patch service my-service -p \'{"spec":{"selector":{"version":"green"}}}\''
+                bat 'kubectl patch service my-service -p "{\\"spec\\":{\\"selector\\":{\\"version\\":\\"green\\"}}}"'
             }
         }
     }
