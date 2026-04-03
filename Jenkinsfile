@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Pull Latest Image') {
             steps {
-                bat 'docker pull hari7890/bluegreen-app:latest --validate=false'
+                bat 'docker pull hari7890/bluegreen-app:latest'
             }
         }
 
